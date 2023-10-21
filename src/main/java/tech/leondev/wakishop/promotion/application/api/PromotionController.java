@@ -37,4 +37,11 @@ public class PromotionController implements PromotionAPI {
         log.info("[end] PromotionController - findById");
         return new PromotionResponseDTO(promotion);
     }
+
+    @Override
+    public void delete(UUID idPromotion) {
+        log.info("[start] PromotionController - delete");
+        promotionService.delete(idPromotion);
+        log.info("[end] PromotionController - delete");
+    }
 }

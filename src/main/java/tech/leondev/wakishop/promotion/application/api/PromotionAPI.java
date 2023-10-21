@@ -21,4 +21,8 @@ public interface PromotionAPI {
     @GetMapping("/{idPromotion}")
     @ResponseStatus(HttpStatus.OK)
     PromotionResponseDTO findById(@PathVariable UUID idPromotion);
+
+    @DeleteMapping("/{idPromotion}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@PathVariable UUID idPromotion);
 }
