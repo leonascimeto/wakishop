@@ -33,4 +33,9 @@ public class Product {
         this.name = productRequestDTO.getName();
         this.price = productRequestDTO.getPrice();
     }
+
+    public void update(ProductRequestDTO productRequestDTO) {
+        this.name = productRequestDTO.getName();
+        this.price = productRequestDTO.getPrice();
+    }
 }

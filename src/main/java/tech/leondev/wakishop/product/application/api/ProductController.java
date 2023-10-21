@@ -38,4 +38,11 @@ public class ProductController implements ProductAPI {
         log.info("[end] ProductController - findById");
         return new ProductResponseDTO(product);
     }
+
+    @Override
+    public void update(ProductRequestDTO productRequestDTO, UUID idProduct) {
+        log.info("[start] ProductController - findById");
+        productService.update(productRequestDTO, idProduct);
+        log.info("[end] ProductController - findById");
+    }
 }

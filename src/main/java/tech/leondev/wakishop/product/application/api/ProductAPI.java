@@ -23,4 +23,8 @@ public interface ProductAPI {
     @GetMapping("/{idProduct}")
     @ResponseStatus(HttpStatus.OK)
     ProductResponseDTO findById(@PathVariable UUID idProduct);
+
+    @PatchMapping("/{idProduct}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void update(@RequestBody @Valid ProductRequestDTO productRequestDTO, @PathVariable UUID idProduct);
 }
