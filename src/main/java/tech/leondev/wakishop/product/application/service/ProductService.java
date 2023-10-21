@@ -1,5 +1,6 @@
 package tech.leondev.wakishop.product.application.service;
 
+import tech.leondev.wakishop.product.application.api.ProductInsertPromotionRequestDTO;
 import tech.leondev.wakishop.product.application.api.ProductRequestDTO;
 import tech.leondev.wakishop.product.domain.Product;
 
@@ -16,4 +17,6 @@ public interface ProductService {
     void update(ProductRequestDTO productRequestDTO, UUID idProduct);
 
     void delete(UUID idProduct);
+
+    void insertPromotion(UUID idProduct, ProductInsertPromotionRequestDTO promotionRequestDTO);
 }

@@ -3,9 +3,12 @@ package tech.leondev.wakishop.product.application.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import tech.leondev.wakishop.product.application.api.ProductInsertPromotionRequestDTO;
 import tech.leondev.wakishop.product.application.api.ProductRequestDTO;
 import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
+import tech.leondev.wakishop.promotion.application.service.PromotionService;
+import tech.leondev.wakishop.promotion.domain.Promotion;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +18,7 @@ import java.util.UUID;
 @Service
 public class ProductApplicationService implements ProductService{
     private final ProductRepository productRepository;
+    private final PromotionService promotionService;
     @Override
     public Product save(Product product) {
         log.info("[start] ProductApplicationService - save");
@@ -54,5 +58,15 @@ public class ProductApplicationService implements ProductService{
         Product product = this.findById(idProduct);
         productRepository.delete(product);
         log.info("[end] ProductApplicationService - delete");
+    }
+
+    @Override
+    public void insertPromotion(UUID idProduct, ProductInsertPromotionRequestDTO promotionRequestDTO) {
+        log.info("[start] ProductApplicationService - insertPromotion");
+        Promotion promotion = promotionService.findById(promotionRequestDTO.getIdPromotion());
+        Product product = this.findById(idProduct);
+        product.insertPromotion(promotion);
+        this.save(product);
+        log.info("[end] ProductApplicationService - insertPromotion");
     }
 }
