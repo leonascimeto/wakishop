@@ -69,4 +69,13 @@ public class ProductApplicationService implements ProductService{
         this.save(product);
         log.info("[end] ProductApplicationService - insertPromotion");
     }
+
+    @Override
+    public void removePromotion(UUID idProduct) {
+        log.info("[start] ProductApplicationService - removePromotion");
+        Product product = this.findById(idProduct);
+        product.removePromotion();
+        this.save(product);
+        log.info("[end] ProductApplicationService - removePromotion");
+    }
 }

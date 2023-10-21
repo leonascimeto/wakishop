@@ -19,4 +19,6 @@ public interface ProductService {
     void delete(UUID idProduct);
 
     void insertPromotion(UUID idProduct, ProductInsertPromotionRequestDTO promotionRequestDTO);
+
+    void removePromotion(UUID idProduct);
 }
