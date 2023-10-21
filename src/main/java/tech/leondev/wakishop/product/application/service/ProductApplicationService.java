@@ -3,6 +3,7 @@ package tech.leondev.wakishop.product.application.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import tech.leondev.wakishop.product.application.api.ProductRequestDTO;
 import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
 
@@ -36,5 +37,14 @@ public class ProductApplicationService implements ProductService{
         Product product = productRepository.findById(idProduct);
         log.info("[end] ProductApplicationService - findById");
         return product;
+    }
+
+    @Override
+    public void update(ProductRequestDTO productRequestDTO, UUID idProduct) {
+        log.info("[start] ProductApplicationService - update");
+        Product product = this.findById(idProduct);
+        product.update(productRequestDTO);
+        this.save(product);
+        log.info("[end] ProductApplicationService - update");
     }
 }

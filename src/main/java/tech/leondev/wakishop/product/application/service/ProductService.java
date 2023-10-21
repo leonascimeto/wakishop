@@ -1,5 +1,6 @@
 package tech.leondev.wakishop.product.application.service;
 
+import tech.leondev.wakishop.product.application.api.ProductRequestDTO;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface ProductService {
     List<Product> list();
 
     Product findById(UUID idProduct);
+
+    void update(ProductRequestDTO productRequestDTO, UUID idProduct);
 }
