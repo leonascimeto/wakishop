@@ -7,6 +7,7 @@ import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -27,5 +28,14 @@ public class ProductInfraRepository implements ProductRepository {
         List<Product> products = productSpringDataJPARepsitory.findAll();
         log.info("[end] ProductInfraRepository - findAll");
         return products;
+    }
+
+    @Override
+    public Product findById(UUID idProduct) {
+        log.info("[start] ProductInfraRepository - findById");
+        Product product = productSpringDataJPARepsitory.findById(idProduct)
+                        .orElseThrow(() -> new RuntimeException("Product not found"));
+        log.info("[end] ProductInfraRepository - findById");
+        return product;
     }
 }
