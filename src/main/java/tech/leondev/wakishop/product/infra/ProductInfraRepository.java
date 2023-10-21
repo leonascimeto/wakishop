@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @Repository
@@ -17,5 +19,13 @@ public class ProductInfraRepository implements ProductRepository {
         Product productSaved = productSpringDataJPARepsitory.save(product);
         log.info("[end] ProductInfraRepository - save");
         return productSaved;
+    }
+
+    @Override
+    public List<Product> findAll() {
+        log.info("[start] ProductInfraRepository - findAll");
+        List<Product> products = productSpringDataJPARepsitory.findAll();
+        log.info("[end] ProductInfraRepository - findAll");
+        return products;
     }
 }
