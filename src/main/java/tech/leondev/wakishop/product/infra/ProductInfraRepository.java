@@ -38,4 +38,11 @@ public class ProductInfraRepository implements ProductRepository {
         log.info("[end] ProductInfraRepository - findById");
         return product;
     }
+
+    @Override
+    public void delete(Product product) {
+        log.info("[start] ProductInfraRepository - delete");
+        productSpringDataJPARepsitory.delete(product);
+        log.info("[end] ProductInfraRepository - delete");
+    }
 }
