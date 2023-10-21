@@ -7,6 +7,7 @@ import tech.leondev.wakishop.promotion.application.service.PromotionService;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -27,5 +28,13 @@ public class PromotionController implements PromotionAPI {
         List<Promotion> promotions = promotionService.list();
         log.info("[end] PromotionController - list");
         return PromotionResponseDTO.converList(promotions);
+    }
+
+    @Override
+    public PromotionResponseDTO findById(UUID idPromotion) {
+        log.info("[start] PromotionController - findById");
+        Promotion promotion = promotionService.findById(idPromotion);
+        log.info("[end] PromotionController - findById");
+        return new PromotionResponseDTO(promotion);
     }
 }
