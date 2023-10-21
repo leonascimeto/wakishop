@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import tech.leondev.wakishop.promotion.application.repository.PromotionRepository;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @Repository
@@ -17,5 +19,13 @@ public class PromotionInfraRepository implements PromotionRepository {
         Promotion promotionSaved = promotionSpringDataJPARepository.save(promotion);
         log.info("[start] PromotionInfraRepository - save");
         return promotionSaved;
+    }
+
+    @Override
+    public List<Promotion> list() {
+        log.info("[start] PromotionInfraRepository - list");
+        List<Promotion> promotions = promotionSpringDataJPARepository.findAll();
+        log.info("[end] PromotionInfraRepository - list");
+        return promotions;
     }
 }
