@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.leondev.wakishop.promotion.application.service.PromotionService;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -17,5 +19,13 @@ public class PromotionController implements PromotionAPI {
         Promotion promotion = promotionService.save(new Promotion(promotionRequestDTO));
         log.info("[end] PromotionController - save");
         return new PromotionResponseDTO(promotion);
+    }
+
+    @Override
+    public List<PromotionResponseDTO> list() {
+        log.info("[start] PromotionController - list");
+        List<Promotion> promotions = promotionService.list();
+        log.info("[end] PromotionController - list");
+        return PromotionResponseDTO.converList(promotions);
     }
 }

@@ -4,10 +4,16 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/promotions")
 public interface PromotionAPI {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     PromotionResponseDTO save(@RequestBody @Valid PromotionRequestDTO promotionRequestDTO);
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    List<PromotionResponseDTO> list();
 }
