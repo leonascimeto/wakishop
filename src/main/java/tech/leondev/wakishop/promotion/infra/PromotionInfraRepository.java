@@ -1,0 +1,21 @@
+package tech.leondev.wakishop.promotion.infra;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Repository;
+import tech.leondev.wakishop.promotion.application.repository.PromotionRepository;
+import tech.leondev.wakishop.promotion.domain.Promotion;
+
+@Log4j2
+@RequiredArgsConstructor
+@Repository
+public class PromotionInfraRepository implements PromotionRepository {
+    private final PromotionSpringDataJPARepository promotionSpringDataJPARepository;
+    @Override
+    public Promotion save(Promotion promotion) {
+        log.info("[start] PromotionInfraRepository - save");
+        Promotion promotionSaved = promotionSpringDataJPARepository.save(promotion);
+        log.info("[start] PromotionInfraRepository - save");
+        return promotionSaved;
+    }
+}
