@@ -32,7 +32,11 @@ public interface ProductAPI {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable UUID idProduct);
 
-    @PatchMapping("/{idProduct}/promotions")
+    @PatchMapping("/{idProduct}/promotions/insert")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void insertPromotion(@PathVariable UUID idProduct, @RequestBody @Valid ProductInsertPromotionRequestDTO productInsertPromotionRequestDTO);
+
+    @PatchMapping("/{idProduct}/promotions/remove")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void removePromotion(@PathVariable UUID idProduct);
 }

@@ -59,4 +59,12 @@ public class ProductController implements ProductAPI {
         productService.insertPromotion(idProduct, productInsertPromotionRequestDTO);
         log.info("[end] ProductController - insertPromotion");
     }
+
+    @Override
+    public void removePromotion(UUID idProduct) {
+        log.info("[start] ProductController - removePromotion");
+        productService.removePromotion(idProduct);
+        log.info("[end] ProductController - removePromotion");
+
+    }
 }

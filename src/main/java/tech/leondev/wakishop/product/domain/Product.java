@@ -42,4 +42,8 @@ public class Product {
     public void insertPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    public void removePromotion() {
+        this.promotion = null;
+    }
 }
