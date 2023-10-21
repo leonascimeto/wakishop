@@ -7,6 +7,7 @@ import tech.leondev.wakishop.promotion.application.repository.PromotionRepositor
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -27,5 +28,14 @@ public class PromotionInfraRepository implements PromotionRepository {
         List<Promotion> promotions = promotionSpringDataJPARepository.findAll();
         log.info("[end] PromotionInfraRepository - list");
         return promotions;
+    }
+
+    @Override
+    public Promotion findById(UUID idPromotion) {
+        log.info("[start] PromotionInfraRepository - findById");
+        Promotion promotion = promotionSpringDataJPARepository.findById(idPromotion)
+                        .orElseThrow(() -> new RuntimeException("Promotion not found"));
+        log.info("[end] PromotionInfraRepository - findById");
+        return promotion;
     }
 }
