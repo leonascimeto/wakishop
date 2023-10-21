@@ -1,5 +1,6 @@
 package tech.leondev.wakishop.product.application.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Value;
 import tech.leondev.wakishop.product.domain.Product;
 import tech.leondev.wakishop.promotion.domain.Promotion;
@@ -9,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Value
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductResponseDTO {
     private UUID idProduct;
     private String name;

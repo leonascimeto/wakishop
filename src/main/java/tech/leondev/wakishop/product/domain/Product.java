@@ -38,4 +38,8 @@ public class Product {
         this.name = productRequestDTO.getName();
         this.price = productRequestDTO.getPrice();
     }
+
+    public void insertPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
 }

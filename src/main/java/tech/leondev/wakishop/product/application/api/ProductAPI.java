@@ -31,4 +31,8 @@ public interface ProductAPI {
     @DeleteMapping("/{idProduct}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable UUID idProduct);
+
+    @PatchMapping("/{idProduct}/promotions")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void insertPromotion(@PathVariable UUID idProduct, @RequestBody @Valid ProductInsertPromotionRequestDTO productInsertPromotionRequestDTO);
 }
