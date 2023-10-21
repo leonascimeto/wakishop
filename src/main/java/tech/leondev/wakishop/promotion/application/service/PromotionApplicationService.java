@@ -8,6 +8,7 @@ import tech.leondev.wakishop.promotion.application.repository.PromotionRepositor
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -29,5 +30,13 @@ public class PromotionApplicationService implements PromotionService {
         List<Promotion> promotions = promotionRepository.list();
         log.info("[end] PromotionApplicationService - list");
         return promotions;
+    }
+
+    @Override
+    public Promotion findById(UUID idPromotion) {
+        log.info("[start] PromotionApplicationService - findById");
+        Promotion promotion = promotionRepository.findById(idPromotion);
+        log.info("[end] PromotionApplicationService - findById");
+        return promotion;
     }
 }
