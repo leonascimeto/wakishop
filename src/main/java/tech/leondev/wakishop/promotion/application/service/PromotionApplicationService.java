@@ -39,4 +39,13 @@ public class PromotionApplicationService implements PromotionService {
         log.info("[end] PromotionApplicationService - findById");
         return promotion;
     }
+
+    @Override
+    public void delete(UUID idPromotion) {
+        log.info("[start] PromotionApplicationService - delete");
+        Promotion promotion = this.findById(idPromotion);
+        promotionRepository.delete(promotion);
+        log.info("[end] PromotionApplicationService - delete");
+
+    }
 }
