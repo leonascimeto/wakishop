@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.leondev.wakishop.product.application.service.ProductService;
 import tech.leondev.wakishop.product.domain.Product;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -18,5 +20,13 @@ public class ProductController implements ProductAPI {
         Product product = productService.save(new Product(productRequestDTO));
         log.info("[end] ProductController - save");
         return new ProductResponseDTO(product);
+    }
+
+    @Override
+    public List<ProductResponseDTO> list() {
+        log.info("[start] ProductController - list");
+        List<Product> products = productService.list();
+        log.info("[end] ProductController - list");
+        return ProductResponseDTO.convertList(products);
     }
 }
