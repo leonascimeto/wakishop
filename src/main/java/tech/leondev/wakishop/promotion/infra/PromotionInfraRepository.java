@@ -38,4 +38,11 @@ public class PromotionInfraRepository implements PromotionRepository {
         log.info("[end] PromotionInfraRepository - findById");
         return promotion;
     }
+
+    @Override
+    public void delete(Promotion promotion) {
+        log.info("[start] PromotionInfraRepository - delete");
+        promotionSpringDataJPARepository.delete(promotion);
+        log.info("[end] PromotionInfraRepository - delete");
+    }
 }

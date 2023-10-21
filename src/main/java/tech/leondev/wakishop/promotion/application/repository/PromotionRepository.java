@@ -12,4 +12,6 @@ public interface PromotionRepository {
     List<Promotion> list();
 
     Promotion findById(UUID idPromotion);
+
+    void delete(Promotion promotion);
 }
