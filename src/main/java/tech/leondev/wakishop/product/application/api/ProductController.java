@@ -45,4 +45,11 @@ public class ProductController implements ProductAPI {
         productService.update(productRequestDTO, idProduct);
         log.info("[end] ProductController - findById");
     }
+
+    @Override
+    public void delete(UUID idProduct) {
+        log.info("[start] ProductController - delete");
+        productService.delete(idProduct);
+        log.info("[end] ProductController - delete");
+    }
 }
