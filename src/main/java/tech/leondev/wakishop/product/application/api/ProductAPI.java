@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/products")
@@ -18,4 +19,8 @@ public interface ProductAPI {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ProductResponseDTO> list();
+
+    @GetMapping("/{idProduct}")
+    @ResponseStatus(HttpStatus.OK)
+    ProductResponseDTO findById(@PathVariable UUID idProduct);
 }

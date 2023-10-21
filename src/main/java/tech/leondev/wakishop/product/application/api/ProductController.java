@@ -8,6 +8,7 @@ import tech.leondev.wakishop.product.application.service.ProductService;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -28,5 +29,13 @@ public class ProductController implements ProductAPI {
         List<Product> products = productService.list();
         log.info("[end] ProductController - list");
         return ProductResponseDTO.convertList(products);
+    }
+
+    @Override
+    public ProductResponseDTO findById(UUID idProduct) {
+        log.info("[start] ProductController - findById");
+        Product product = productService.findById(idProduct);
+        log.info("[end] ProductController - findById");
+        return new ProductResponseDTO(product);
     }
 }
