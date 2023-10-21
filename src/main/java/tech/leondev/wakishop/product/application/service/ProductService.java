@@ -14,4 +14,6 @@ public interface ProductService {
     Product findById(UUID idProduct);
 
     void update(ProductRequestDTO productRequestDTO, UUID idProduct);
+
+    void delete(UUID idProduct);
 }

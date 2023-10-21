@@ -47,4 +47,12 @@ public class ProductApplicationService implements ProductService{
         this.save(product);
         log.info("[end] ProductApplicationService - update");
     }
+
+    @Override
+    public void delete(UUID idProduct) {
+        log.info("[start] ProductApplicationService - delete");
+        Product product = this.findById(idProduct);
+        productRepository.delete(product);
+        log.info("[end] ProductApplicationService - delete");
+    }
 }
