@@ -7,6 +7,7 @@ import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -27,5 +28,13 @@ public class ProductApplicationService implements ProductService{
         List<Product> products = productRepository.findAll();
         log.info("[end] ProductApplicationService - list");
         return products;
+    }
+
+    @Override
+    public Product findById(UUID idProduct) {
+        log.info("[start] ProductApplicationService - findById");
+        Product product = productRepository.findById(idProduct);
+        log.info("[end] ProductApplicationService - findById");
+        return product;
     }
 }
