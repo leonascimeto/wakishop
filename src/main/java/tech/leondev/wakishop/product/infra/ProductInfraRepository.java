@@ -2,7 +2,9 @@ package tech.leondev.wakishop.product.infra;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import tech.leondev.wakishop.handler.ApiException;
 import tech.leondev.wakishop.product.application.repository.ProductRepository;
 import tech.leondev.wakishop.product.domain.Product;
 
@@ -34,7 +36,7 @@ public class ProductInfraRepository implements ProductRepository {
     public Product findById(UUID idProduct) {
         log.info("[start] ProductInfraRepository - findById");
         Product product = productSpringDataJPARepsitory.findById(idProduct)
-                        .orElseThrow(() -> new RuntimeException("Product not found"));
+                        .orElseThrow(() -> ApiException.build(HttpStatus.NOT_FOUND, "Product not found"));
         log.info("[end] ProductInfraRepository - findById");
         return product;
     }

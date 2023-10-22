@@ -2,7 +2,9 @@ package tech.leondev.wakishop.promotion.infra;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import tech.leondev.wakishop.handler.ApiException;
 import tech.leondev.wakishop.promotion.application.repository.PromotionRepository;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
@@ -34,7 +36,7 @@ public class PromotionInfraRepository implements PromotionRepository {
     public Promotion findById(UUID idPromotion) {
         log.info("[start] PromotionInfraRepository - findById");
         Promotion promotion = promotionSpringDataJPARepository.findById(idPromotion)
-                        .orElseThrow(() -> new RuntimeException("Promotion not found"));
+                        .orElseThrow(() -> ApiException.build(HttpStatus.NOT_FOUND, "Promotion not found"));
         log.info("[end] PromotionInfraRepository - findById");
         return promotion;
     }
