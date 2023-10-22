@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import tech.leondev.wakishop.checkout.application.api.CartItemRequestDTO;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.math.BigDecimal;
@@ -28,4 +29,20 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
+
+    public CartItem(CartItemRequestDTO cartItemRequestDTO, Product product, ShoppingCart shoppingCart){
+        this.product = product;
+        this.quantity = cartItemRequestDTO.getQuantity();
+        this.price = calculatePrice();
+        this.shoppingCart = shoppingCart;
+    }
+
+    private BigDecimal calculatePrice(){
+        return this.product.getPrice().multiply(BigDecimal.valueOf(this.quantity));
+    }
+
+    public void incrementQuantity(int quantityToAdd){
+        this.quantity += quantityToAdd;
+        this.price = calculatePrice();
+    }
 }
