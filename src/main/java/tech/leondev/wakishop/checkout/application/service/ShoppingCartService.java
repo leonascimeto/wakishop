@@ -11,4 +11,6 @@ public interface ShoppingCartService {
     List<ShoppingCart> listShoppingCart();
     public ShoppingCart getActiveShoppingCart();
     void addItem(CartItemRequestDTO cartItemRequestDTO);
+
+    void removeItem(CartItemRequestDTO cartItemRequestDTO);
 }

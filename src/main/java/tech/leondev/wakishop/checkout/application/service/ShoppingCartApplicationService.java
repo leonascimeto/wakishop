@@ -52,4 +52,14 @@ public class ShoppingCartApplicationService implements ShoppingCartService {
         log.info("[end] ShoppingCartApplicationService - addItem");
         this.saveShoppingCart(shoppingCart);
     }
+
+    @Override
+    public void removeItem(CartItemRequestDTO cartItemRequestDTO) {
+        log.info("[start] ShoppingCartApplicationService - removeItem");
+        ShoppingCart shoppingCart = this.getActiveShoppingCart();
+        Product product = productService.findById(cartItemRequestDTO.getProductId());
+        shoppingCart.removeItem(new CartItem(cartItemRequestDTO, product, shoppingCart));
+        log.info("[end] ShoppingCartApplicationService - removeItem");
+        this.saveShoppingCart(shoppingCart);
+    }
 }
