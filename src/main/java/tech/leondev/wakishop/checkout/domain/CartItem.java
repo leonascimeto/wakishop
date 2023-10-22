@@ -38,11 +38,17 @@ public class CartItem {
     }
 
     private BigDecimal calculatePrice(){
-        return this.product.getPrice().multiply(BigDecimal.valueOf(this.quantity));
+        return this.price = this.product.getPrice().multiply(BigDecimal.valueOf(this.quantity));
     }
 
     public void incrementQuantity(int quantityToAdd){
         this.quantity += quantityToAdd;
+        this.price = calculatePrice();
+    }
+
+    public void decrementQuantity(int quantityToRemove){
+        if(quantityToRemove > this.getQuantity()) this.quantity = 0;
+        this.quantity -= quantityToRemove;
         this.price = calculatePrice();
     }
 }

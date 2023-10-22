@@ -13,6 +13,10 @@ public interface CheckoutAPI {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void addItem(@RequestBody @Valid CartItemRequestDTO cartItemRequestDTO);
 
+    @PatchMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void removeItem(@RequestBody @Valid CartItemRequestDTO cartItemRequestDTO);
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ShoppingCartResponseDTO> listShoppingCarts();

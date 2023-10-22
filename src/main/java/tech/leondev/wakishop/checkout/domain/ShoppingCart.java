@@ -28,12 +28,29 @@ public class ShoppingCart{
     private List<CartItem> cartItems = new ArrayList<>();
 
     public void addItem(CartItem cartItem) {
-        for(CartItem item : this.cartItems){
-            if(item.getProduct().equals(cartItem.getProduct())){
-                item.incrementQuantity(cartItem.getQuantity());
-                return;
-            }
+        Optional<CartItem> existingItem = findItemByProduct(cartItem.getProduct());
+        if (existingItem.isPresent()) {
+            existingItem.get().incrementQuantity(cartItem.getQuantity());
+            return;
         }
-        this.cartItems.add(cartItem);
+
+        cartItems.add(cartItem);
+    }
+
+    public void removeItem(CartItem cartItem){
+        Optional<CartItem> existingItem = findItemByProduct(cartItem.getProduct());
+
+        existingItem.ifPresent(item -> {
+            item.decrementQuantity(cartItem.getQuantity());
+            if (item.getQuantity() == 0) {
+                cartItems.remove(item);
+            }
+        });
+    }
+
+    private Optional<CartItem> findItemByProduct(Product product) {
+        return cartItems.stream()
+                .filter(item -> item.getProduct().equals(product))
+                .findFirst();
     }
 }

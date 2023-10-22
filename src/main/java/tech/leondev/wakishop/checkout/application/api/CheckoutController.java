@@ -21,6 +21,13 @@ public class CheckoutController implements CheckoutAPI{
     }
 
     @Override
+    public void removeItem(CartItemRequestDTO cartItemRequestDTO) {
+        log.info("[start] CheckoutController - removeItem");
+        shoppingCartService.removeItem(cartItemRequestDTO);
+        log.info("[end] CheckoutController - removeItem");
+    }
+
+    @Override
     public List<ShoppingCartResponseDTO> listShoppingCarts() {
         log.info("[start] CheckoutController - listShoppingCarts");
         List<ShoppingCart> shoppingCarts =  shoppingCartService.listShoppingCart();
