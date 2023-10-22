@@ -36,6 +36,7 @@ public class ShoppingCart{
             cartItems.add(cartItem);
             cartItem.calculatePrice();
         }
+        calculateTotalPrice();
     }
 
     public void removeItem(CartItem cartItem){
@@ -46,6 +47,13 @@ public class ShoppingCart{
             if (item.getQuantity() == 0) cartItems.remove(item);
             item.calculatePrice();
         });
+        calculateTotalPrice();
+    }
+
+    private void calculateTotalPrice(){
+        this.totalPrice = cartItems.stream()
+                .map(item -> item.getPrice())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Optional<CartItem> findItemByProduct(Product product) {
