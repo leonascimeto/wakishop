@@ -31,10 +31,11 @@ public class ShoppingCart{
         Optional<CartItem> existingItem = findItemByProduct(cartItem.getProduct());
         if (existingItem.isPresent()) {
             existingItem.get().incrementQuantity(cartItem.getQuantity());
-            return;
+            existingItem.get().calculatePrice();
+        } else {
+            cartItems.add(cartItem);
+            cartItem.calculatePrice();
         }
-
-        cartItems.add(cartItem);
     }
 
     public void removeItem(CartItem cartItem){
@@ -42,13 +43,12 @@ public class ShoppingCart{
 
         existingItem.ifPresent(item -> {
             item.decrementQuantity(cartItem.getQuantity());
-            if (item.getQuantity() == 0) {
-                cartItems.remove(item);
-            }
+            if (item.getQuantity() == 0) cartItems.remove(item);
+            item.calculatePrice();
         });
     }
 
-    private Optional<CartItem> findItemByProduct(Product product) {
+    public Optional<CartItem> findItemByProduct(Product product) {
         return cartItems.stream()
                 .filter(item -> item.getProduct().equals(product))
                 .findFirst();

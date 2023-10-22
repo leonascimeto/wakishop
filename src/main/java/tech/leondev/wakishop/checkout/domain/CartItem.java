@@ -33,22 +33,29 @@ public class CartItem {
     public CartItem(CartItemRequestDTO cartItemRequestDTO, Product product, ShoppingCart shoppingCart){
         this.product = product;
         this.quantity = cartItemRequestDTO.getQuantity();
-        this.price = calculatePrice();
         this.shoppingCart = shoppingCart;
+        calculatePrice();
     }
 
-    private BigDecimal calculatePrice(){
-        return this.price = this.product.getPrice().multiply(BigDecimal.valueOf(this.quantity));
+    public void calculatePrice(){
+        if(haveValidPromotion()){
+            this.price =  this.product.getPromotion().getTypePromotion().applyPromotion(this);
+            return;
+        }
+        this.price = this.product.getPrice().multiply(BigDecimal.valueOf(this.quantity));
     }
 
     public void incrementQuantity(int quantityToAdd){
         this.quantity += quantityToAdd;
-        this.price = calculatePrice();
     }
 
     public void decrementQuantity(int quantityToRemove){
         if(quantityToRemove > this.getQuantity()) this.quantity = 0;
         this.quantity -= quantityToRemove;
-        this.price = calculatePrice();
+    }
+
+    private boolean haveValidPromotion(){
+        return this.product.getPromotion() != null &&
+                this.quantity >= this.product.getPromotion().getTake();
     }
 }

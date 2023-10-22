@@ -12,6 +12,7 @@ import tech.leondev.wakishop.product.application.service.ProductService;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -48,7 +49,8 @@ public class ShoppingCartApplicationService implements ShoppingCartService {
         log.info("[start] ShoppingCartApplicationService - addItem");
         ShoppingCart shoppingCart = this.getActiveShoppingCart();
         Product product = productService.findById(cartItemRequestDTO.getProductId());
-        shoppingCart.addItem(new CartItem(cartItemRequestDTO, product, shoppingCart));
+        CartItem cartItem = new CartItem(cartItemRequestDTO, product, shoppingCart);
+        shoppingCart.addItem(cartItem);
         log.info("[end] ShoppingCartApplicationService - addItem");
         this.saveShoppingCart(shoppingCart);
     }
@@ -58,7 +60,8 @@ public class ShoppingCartApplicationService implements ShoppingCartService {
         log.info("[start] ShoppingCartApplicationService - removeItem");
         ShoppingCart shoppingCart = this.getActiveShoppingCart();
         Product product = productService.findById(cartItemRequestDTO.getProductId());
-        shoppingCart.removeItem(new CartItem(cartItemRequestDTO, product, shoppingCart));
+        CartItem cartItem = new CartItem(cartItemRequestDTO, product, shoppingCart);
+        shoppingCart.removeItem(cartItem);
         log.info("[end] ShoppingCartApplicationService - removeItem");
         this.saveShoppingCart(shoppingCart);
     }
