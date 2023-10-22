@@ -11,14 +11,18 @@ import java.util.stream.Collectors;
 
 @Value
 public class CartItemResponseDTO {
-    private ProductResponseDTO product;
+    private String item;
     private int quantity;
-    private BigDecimal price;
+    private BigDecimal unitPrice;
+    private BigDecimal totalPrice;
+    private String promotion;
 
     public CartItemResponseDTO(CartItem cartItem){
-        this.product = new ProductResponseDTO(cartItem.getProduct());
+        this.item = cartItem.getProduct().getName();
         this.quantity = cartItem.getQuantity();
-        this.price = cartItem.getPrice();
+        this.unitPrice = cartItem.getProduct().getPrice();
+        this.totalPrice = cartItem.getPrice();
+        this.promotion = cartItem.getProduct().getPromotion().getDescription();
     }
 
     public static List<CartItemResponseDTO> convertList(List<CartItem> cartItems){
