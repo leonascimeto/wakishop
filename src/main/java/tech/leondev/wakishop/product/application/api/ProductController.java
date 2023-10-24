@@ -18,25 +18,25 @@ public class ProductController implements ProductAPI {
     @Override
     public ProductResponseDTO save(ProductRequestDTO productRequestDTO) {
         log.info("[start] ProductController - save");
-        Product product = productService.save(new Product(productRequestDTO));
+        ProductResponseDTO response = productService.save(productRequestDTO);
         log.info("[end] ProductController - save");
-        return new ProductResponseDTO(product);
+        return response;
     }
 
     @Override
     public List<ProductResponseDTO> list() {
         log.info("[start] ProductController - list");
-        List<Product> products = productService.list();
+        List<ProductResponseDTO> products = productService.list();
         log.info("[end] ProductController - list");
-        return ProductResponseDTO.convertList(products);
+        return products;
     }
 
     @Override
     public ProductResponseDTO findById(UUID idProduct) {
         log.info("[start] ProductController - findById");
-        Product product = productService.findById(idProduct);
+        ProductResponseDTO product = productService.findById(idProduct);
         log.info("[end] ProductController - findById");
-        return new ProductResponseDTO(product);
+        return product;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ProductController implements ProductAPI {
     @Override
     public void insertPromotion(UUID idProduct, ProductInsertPromotionRequestDTO productInsertPromotionRequestDTO) {
         log.info("[start] ProductController - insertPromotion");
-        productService.insertPromotion(idProduct, productInsertPromotionRequestDTO);
+        productService.insertPromotion(idProduct, productInsertPromotionRequestDTO.getIdPromotion());
         log.info("[end] ProductController - insertPromotion");
     }
 
@@ -65,6 +65,5 @@ public class ProductController implements ProductAPI {
         log.info("[start] ProductController - removePromotion");
         productService.removePromotion(idProduct);
         log.info("[end] ProductController - removePromotion");
-
     }
 }

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 import tech.leondev.wakishop.checkout.application.api.CartItemRequestDTO;
+import tech.leondev.wakishop.handler.ApiException;
 import tech.leondev.wakishop.product.domain.Product;
 
 import java.math.BigDecimal;

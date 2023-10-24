@@ -17,25 +17,25 @@ public class PromotionController implements PromotionAPI {
     @Override
     public PromotionResponseDTO save(PromotionRequestDTO promotionRequestDTO) {
         log.info("[start] PromotionController - save");
-        Promotion promotion = promotionService.save(new Promotion(promotionRequestDTO));
+        PromotionResponseDTO promotion = promotionService.save(new Promotion(promotionRequestDTO));
         log.info("[end] PromotionController - save");
-        return new PromotionResponseDTO(promotion);
+        return promotion;
     }
 
     @Override
     public List<PromotionResponseDTO> list() {
         log.info("[start] PromotionController - list");
-        List<Promotion> promotions = promotionService.list();
+        List<PromotionResponseDTO> promotions = promotionService.list();
         log.info("[end] PromotionController - list");
-        return PromotionResponseDTO.converList(promotions);
+        return promotions;
     }
 
     @Override
     public PromotionResponseDTO findById(UUID idPromotion) {
         log.info("[start] PromotionController - findById");
-        Promotion promotion = promotionService.findById(idPromotion);
+        PromotionResponseDTO promotion = promotionService.findById(idPromotion);
         log.info("[end] PromotionController - findById");
-        return new PromotionResponseDTO(promotion);
+        return promotion;
     }
 
     @Override

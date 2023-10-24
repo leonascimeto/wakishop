@@ -1,16 +1,17 @@
 package tech.leondev.wakishop.promotion.application.service;
 
+import tech.leondev.wakishop.promotion.application.api.PromotionResponseDTO;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface PromotionService {
-    Promotion save(Promotion promotion);
+    PromotionResponseDTO save(Promotion promotion);
 
-    List<Promotion> list();
+    List<PromotionResponseDTO> list();
 
-    Promotion findById(UUID idPromotion);
+    PromotionResponseDTO findById(UUID idPromotion);
 
     void delete(UUID idPromotion);
 }

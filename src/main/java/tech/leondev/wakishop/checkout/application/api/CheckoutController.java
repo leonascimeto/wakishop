@@ -30,8 +30,8 @@ public class CheckoutController implements CheckoutAPI{
     @Override
     public List<ShoppingCartResponseDTO> listShoppingCarts() {
         log.info("[start] CheckoutController - listShoppingCarts");
-        List<ShoppingCart> shoppingCarts =  shoppingCartService.listShoppingCart();
+        List<ShoppingCartResponseDTO> shoppingCarts =  shoppingCartService.listShoppingCart();
         log.info("[end] CheckoutController - listShoppingCarts");
-        return ShoppingCartResponseDTO.convertList(shoppingCarts);
+        return shoppingCarts;
     }
 }

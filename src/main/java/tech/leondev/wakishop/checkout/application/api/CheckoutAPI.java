@@ -9,16 +9,15 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/checkouts/carts/items")
 public interface CheckoutAPI {
-    @PostMapping
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void addItem(@RequestBody @Valid CartItemRequestDTO cartItemRequestDTO);
 
-    @PatchMapping
+    @PatchMapping("/remove")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void removeItem(@RequestBody @Valid CartItemRequestDTO cartItemRequestDTO);
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ShoppingCartResponseDTO> listShoppingCarts();
-
 }

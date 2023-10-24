@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ShoppingCartService {
     ShoppingCart saveShoppingCart(ShoppingCart shoppingCart);
-    List<ShoppingCart> listShoppingCart();
+    List<ShoppingCartResponseDTO> listShoppingCart();
     public ShoppingCart getActiveShoppingCart();
     void addItem(CartItemRequestDTO cartItemRequestDTO);
 
