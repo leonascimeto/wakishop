@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import tech.leondev.wakishop.product.application.api.ProductRequestDTO;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
@@ -23,7 +24,7 @@ public class Product {
     @NotBlank
     private String name;
     @NotNull
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "promotion_id")

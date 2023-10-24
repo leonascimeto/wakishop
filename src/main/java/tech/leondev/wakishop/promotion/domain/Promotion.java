@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import tech.leondev.wakishop.promotion.application.api.PromotionRequestDTO;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
@@ -24,9 +25,20 @@ public class Promotion {
     private String code;
     @NotBlank
     private String description;
+    @Column(name = "type_promotion")
+    @Enumerated(EnumType.STRING)
+    private TypePromotion typePromotion;
+    private int take;
+    private int pay;
+    @Column(name = "fixed_price")
+    private BigDecimal fixedPrice = BigDecimal.ZERO;
 
     public Promotion(PromotionRequestDTO promotionRequestDTO){
         this.description = promotionRequestDTO.getDescription();
         this.code = promotionRequestDTO.getCode();
+        this.pay = promotionRequestDTO.getPay();
+        this.take = promotionRequestDTO.getTake();
+        this.fixedPrice = promotionRequestDTO.getFixedPrice();
+        this.typePromotion = promotionRequestDTO.getTypePromotion();
     }
 }

@@ -5,6 +5,7 @@ import lombok.Value;
 import tech.leondev.wakishop.product.domain.Product;
 import tech.leondev.wakishop.promotion.domain.Promotion;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class ProductResponseDTO {
     private UUID idProduct;
     private String name;
-    private double price;
+    private BigDecimal price;
     private Promotion promotion;
 
     public ProductResponseDTO(Product product) {
