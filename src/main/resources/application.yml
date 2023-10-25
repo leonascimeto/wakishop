@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /wakishop/api
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wakishop
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /public/swagger
